@@ -10,6 +10,9 @@ class AccessController():
         self.currentHour = datetime.now().hour
         self.parse_policy_file()
 
+    def has_role(self, role):
+        return role in self.policy
+    
     def parse_policy_file(self):
         policy_file = open(self.policy_filename, "r")
         parsed_obj = json.loads(policy_file.read())

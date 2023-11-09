@@ -21,22 +21,52 @@ class UserInterface:
             print(res)
 
     def load_login(self):
-        user_name = input("Enter your username: ")
+        username = input("Enter your username: ")
         password = getpass.getpass()
 
-        res = self.am.login_user(user_name, password)
+        res = self.am.login_user(username, password)
         if res in self.ac.policy:
             print("ACCESS GRANTED")
             self.load_user(res)
         else:
             print("INVALID LOGIN")
+            self.start()
 
+    def validate_username(self, username):
+        return not self.am.username_exists(username)
+    
+    def validate_password(self, password):
+        return True
+    
+    def validate_role(self, role):
+        return self.ac.has_role(role)
+    
     def load_register(self):
-        print("Enter your details")
-        #user_name = 
+        print("New user:")
+        username = input("Username: ")
+        while (not self.validate_username(username)):
+            print("Error! username has been taken")
+            username = input("Username: ")
+
+        password = getpass.getpass()
+        while (not self.validate_password(password)):
+            print("Error! Invalid password")
+            password = getpass.getpass()
+
+        role = input("Role: ")
+        while (not self.validate_role(role)):
+            print("Error! Invalid role")
+            role = input("Role: ")
+
+        if self.am.enrol_user(username, password, role):
+            print("User enrolled successfully!")
+            self.start()
+        else:
+            print("Failed to register the user!")
+
 
     def start(self):
-        print("Finvest Holdings\nClient Holdings and Information Systems\n----------")
+        print("\n==========\nFinvest Holdings\nClient Holdings and Information Systems\n----------")
         c = input("Enter L(l) to login and R(r) to register: ")
 
         if c.upper() == "L":
