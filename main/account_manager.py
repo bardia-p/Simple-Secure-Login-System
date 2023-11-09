@@ -25,7 +25,7 @@ class AccountManager:
     def enrol_user(self, user_name, password, role):
         if not self.username_exists(user_name):
             password_file = open(self.password_filename, "a")
-            encrypted_pasword = self.pm.generate_salted_password_hash(password)
+            encrypted_pasword = self.pm.generate_password_hash(password)
             password_line = user_name + ":" + encrypted_pasword + ":" + role + "\n"
             password_file.write(password_line)
             password_file.close()

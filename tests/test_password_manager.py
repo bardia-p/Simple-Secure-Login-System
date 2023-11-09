@@ -26,7 +26,7 @@ class TestPasswordManager():
         print("\n----------\nRunning " + self.test_verify_user_hash.__name__ + "\n")
 
         password = "password"
-        generated_hash = self.pm.generate_salted_password_hash(password)
+        generated_hash = self.pm.generate_password_hash(password)
 
         assert self.pm.verify_user_hash(generated_hash, password) == True, "Hash verification failed"
 

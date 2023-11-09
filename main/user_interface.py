@@ -9,6 +9,7 @@ class UserInterface:
 
     def load_user(self, role):
         print("\n----------\nWelcome!\n")
+        print("Role: " + role + "\n")
         permissions = self.ac.get_permissions(role)
         if len(permissions) == 0:
             print("You are not allowed to use the system at this time!")
@@ -18,7 +19,6 @@ class UserInterface:
                 res += permissions[p] + ":" + p +",\t"
 
             print(res)
-
 
     def load_login(self):
         user_name = input("Enter your username: ")
@@ -32,7 +32,8 @@ class UserInterface:
             print("INVALID LOGIN")
 
     def load_register(self):
-        pass
+        print("Enter your details")
+        #user_name = 
 
     def start(self):
         print("Finvest Holdings\nClient Holdings and Information Systems\n----------")
