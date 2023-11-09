@@ -1,0 +1,75 @@
+{
+    "roles" : [
+        {
+            "name" : "Regular Client",
+            "permissions" : {
+                "Account Balance" : "View",
+                "Investment Portfolio" : "View",
+                "Financial Advisor Contacts" : "View"
+            }
+        },
+        {
+            "name" : "Premium Client",
+            "parent" : "Regular Client",
+            "permissions" : {
+                "Investment Portfolio" : "Modify",
+                "Financial Planner Contacts" : "View",
+                "Investment Analyst Contacts" : "View"
+            }
+        },
+        {
+            "name" : "NonTechEmployee",
+            "permissions" : {
+                "Account Balance" : "View",
+                "Investment Portfolio" : "View"
+            }
+        },
+        {
+            "name" : "Financial Advisor",
+            "parent" : "NonTechEmployee",
+            "permissions" : {
+                "Investment Portfolio" : "Modify",
+                "Private Consumer Instruments" : "View"
+            }
+        },
+        {
+            "name" : "Financial Planner",
+            "parent" : "NonTechEmployee",
+            "permissions" : {
+                "Investment Portfolio" : "Modify",
+                "Private Consumer Instruments" : "View",
+                "Money Market Instruments": "View"
+            }
+        },
+        {
+            "name" : "Investment Analyst",
+            "parent" : "NonTechEmployee",
+            "permissions" : {
+                "Investment Portfolio" : "Modify",
+                "Private Consumer Instruments" : "View",
+                "Money Market Instruments": "View",
+                "Derivatives Trading": "View",
+                "Interest Instruments": "View"
+            }
+        },
+        {
+            "name" : "Technical Support",
+            "permissions" : {
+                "Client Information" : "View",
+                "Client Account" : "Validate"
+            }
+        },
+        {
+            "name" : "Teller",
+            "parent" : "NonTechEmployee",
+            "restrictions" : {"time" : [9, 17]}
+        },
+        {
+            "name" : "Compliance Officer",
+            "parent" : "NonTechEmployee",
+            "permissions" : {
+                "Investment Portfolio" : "Validate"
+            }
+        }
+    ]
+}
