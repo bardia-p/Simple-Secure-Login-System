@@ -35,9 +35,6 @@ class UserInterface:
         else:
             print("INVALID LOGIN")
             self.start()
-
-    def validate_username(self, username):
-        return not self.am.username_exists(username)
     
     def validate_password(self, username, password):
         # Verifying the password requirements.
@@ -46,7 +43,6 @@ class UserInterface:
         # - at least one lower case letter.
         # - at least one digit
         # - at least one character from {!@#$%?*}
-        # - length of between 8 and 12
         if not re.match("^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%?*]).{8,12}$", password):
             return False
         
@@ -60,13 +56,13 @@ class UserInterface:
                 return False
 
         # Looking for calendar dates
-        # - Checking for YYYY-MM-DD, YYYY/MM/DD, and YYY MM DD
-        if re.search("^(?:19|20)\d{2}[- /.](?:0[1-9]|1[0-2])[- /.](?:0[1-9]|[12][0-9]|3[01])$", password):
+        # - Checking for YYYY-MM-DD, YYYY/MM/DD, YYY MM DD, and YYYYMMDD
+        if re.search("(?:19|20)\d{2}[- /.]*(?:0[1-9]|1[0-2])[- /.]*(?:0[1-9]|[12][0-9]|3[01])", password):
             return False 
               
         # Looking for license plate numbers
         # - Checking for Canadian license plates: (4 letters followed by 3 numbers)
-        if re.match("^(?:[a-zA-Z]{4}\d{3})$", password):
+        if re.search("(?:[A-Z]{4}\d{3})", password):
             return False 
 
         # Looking for telephone numbers
@@ -91,10 +87,6 @@ class UserInterface:
     def load_register(self):
         print("New user:")
         username = input("Username: ")
-        while (not self.validate_username(username)):
-            print("Error! username has been taken")
-            username = input("Username: ")
-
         password = getpass.getpass()
         while (not self.validate_password(username, password)):
             print("Error! Invalid password")
@@ -109,7 +101,7 @@ class UserInterface:
             print("User enrolled successfully!")
             self.start()
         else:
-            print("Failed to register the user!")
+            print("Failed to register the user! Username already exists")
 
 
     def start(self):
