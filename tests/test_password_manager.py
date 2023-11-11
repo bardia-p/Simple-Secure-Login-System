@@ -4,7 +4,13 @@ sys.path.insert(0, './main')
 import password_manager
 
 class TestPasswordManager():
+    '''
+    Tests the PasswordManager class.
+    '''
     def __init__(self):
+        '''
+        Initializes the tests.
+        '''
         self.pm = password_manager.PasswordManager()
     
     def runTests(self):

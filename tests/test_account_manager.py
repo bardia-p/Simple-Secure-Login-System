@@ -7,17 +7,29 @@ import account_manager
 TEST_PASSWORD_FILENAME = "test_passwd.txt"
 
 class TestAccountManager():
+    '''
+    Tests the AccountManager class.
+    '''
     def __init__(self):
+        '''
+        Initializes the tests.
+        '''
         self.am = account_manager.AccountManager(TEST_PASSWORD_FILENAME)
         if os.path.isfile(TEST_PASSWORD_FILENAME):
             os.remove(TEST_PASSWORD_FILENAME)
 
     def runTests(self):
+        '''
+        Runs all the tests in the test harness.
+        '''
         self.test_enrol_user()
         self.test_save_same_user()
         self.test_invalid_password()
 
     def test_enrol_user(self):
+        '''
+        Tests enrolling a user.
+        '''
         print("\n----------\nRunning " + self.test_enrol_user.__name__ + "\n")
 
         username = "bardia"
@@ -33,6 +45,9 @@ class TestAccountManager():
         print("PASS")
 
     def test_save_same_user(self):
+        '''
+        Tests enrolling the same user.
+        '''
         print("\n----------\nRunning " + self.test_save_same_user.__name__ + "\n")
 
         username = "cassidy"
@@ -48,6 +63,9 @@ class TestAccountManager():
         print("PASS")
 
     def test_invalid_password(self):
+        '''
+        Tests logging in with an invalid password.
+        '''
         print("\n----------\nRunning " + self.test_invalid_password.__name__ + "\n")
 
         username = "doro"

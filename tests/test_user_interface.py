@@ -4,14 +4,26 @@ sys.path.insert(0, './main')
 import user_interface
 
 class TestUserInterface():
+    '''
+    Tests the UserInterface class.
+    '''
     def __init__(self):
+        '''
+        The constructor for the User Interface.
+        '''
         self.ui = user_interface.UserInterface()
     
     def runTests(self):
+        '''
+        Runs all the tests in the test harness.
+        '''
         self.test_validate_role()
         self.test_validate_password()
 
     def test_validate_role(self):
+        '''
+        Tests the role validation command in the UI.
+        '''
         print("\n----------\nRunning " + self.test_validate_role.__name__ + "\n")
 
         # Testing a valid role.
@@ -23,6 +35,9 @@ class TestUserInterface():
         print("PASS")   
 
     def test_validate_password(self):
+        '''
+        Tests the password validation with different passwords.
+        '''
         print("\n----------\nRunning " + self.test_validate_password.__name__ + "\n")
 
         username = "bardia"

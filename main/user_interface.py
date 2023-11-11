@@ -6,37 +6,26 @@ import re
 COMMON_PASSWORDS_FILE = "common_passwords.txt"
 
 class UserInterface:
+    '''
+    Handles the UI for the system.
+    '''
     def __init__(self, common_passwords_filename = COMMON_PASSWORDS_FILE):
+        '''
+        Constructor for the user interface.
+
+        @param common_passwords_filename: The filename for the list of the common passwords.
+        '''
         self.ac = access_controller.AccessController()
         self.am = account_manager.AccountManager()
         self.common_passwords_filename = common_passwords_filename
-
-    def load_user(self, username, role):
-        print("\n----------\nWelcome " + username + "!\n")
-        print("Role: " + role + "\n")
-        permissions = self.ac.get_permissions(role)
-        if len(permissions) == 0:
-            print("You are not allowed to use the system at this time!")
-        else:
-            res = ""
-            for p in permissions.keys():
-                res += permissions[p] + ":" + p +",\t"
-
-            print(res)
-
-    def load_login(self):
-        username = input("Enter your username: ")
-        password = getpass.getpass()
-
-        res = self.am.login_user(username, password)
-        if res in self.ac.policy:
-            print("ACCESS GRANTED")
-            self.load_user(username, res)
-        else:
-            print("INVALID LOGIN")
-            self.start()
     
     def validate_password(self, username, password):
+        '''
+        Validates the given password based on the password rules.
+
+        @param username: the username for the user.
+        @param password: the proposed password.
+        '''
         # Verifying the password requirements.
         # - length 8 to 12
         # - at least one upper case letter.
@@ -56,8 +45,8 @@ class UserInterface:
                 return False
 
         # Looking for calendar dates
-        # - Checking for YYYY-MM-DD, YYYY/MM/DD, YYY MM DD, and YYYYMMDD
-        if re.search("(?:19|20)\d{2}[- /.]*(?:0[1-9]|1[0-2])[- /.]*(?:0[1-9]|[12][0-9]|3[01])", password):
+        # - Checking for YYYYMMDD
+        if re.search("(?:19|20)\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12][0-9]|3[01])", password):
             return False 
               
         # Looking for license plate numbers
@@ -82,9 +71,52 @@ class UserInterface:
         return True
     
     def validate_role(self, role):
+        '''
+        Validates the given role.
+
+        @param role: the role to valdiate.
+        '''
         return self.ac.has_role(role)
     
+
+    def load_user(self, username, role):
+        '''
+        Displays the window for loading the user information.
+
+        @param username: The username of the user to load.
+        @param role: The role for the user to load.
+        '''
+        print("\n----------\nWelcome " + username + "!\n")
+        print("Role: " + role + "\n")
+        permissions = self.ac.get_permissions(role)
+        if len(permissions) == 0:
+            print("You are not allowed to use the system at this time!")
+        else:
+            res = ""
+            for p in permissions.keys():
+                res += permissions[p] + ":" + p +",\t"
+
+            print(res)
+
+    def load_login(self):
+        '''
+        Displays the login screen.
+        '''
+        username = input("Enter your username: ")
+        password = getpass.getpass()
+
+        res = self.am.login_user(username, password)
+        if res in self.ac.policy:
+            print("ACCESS GRANTED")
+            self.load_user(username, res)
+        else:
+            print("INVALID LOGIN")
+            self.start()
+
     def load_register(self):
+        '''
+        Loads the registeration windwo.
+        '''
         print("New user:")
         username = input("Username: ")
         password = getpass.getpass()
@@ -105,6 +137,9 @@ class UserInterface:
 
 
     def start(self):
+        '''
+        The start menu. Loading the application.
+        '''
         print("\n==========\nFinvest Holdings\nClient Holdings and Information Systems\n----------")
         c = input("Enter L(l) to login and R(r) to register: ")
 

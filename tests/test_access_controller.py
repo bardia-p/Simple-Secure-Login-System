@@ -4,14 +4,26 @@ sys.path.insert(0, './main')
 import access_controller
 
 class TestAccessController():
+    '''
+    Tests the AccessContoller class.
+    '''
     def __init__(self):
+        '''
+        Initializes the tests.
+        '''
         self.ac = access_controller.AccessController()
 
     def runTests(self):
+        '''
+        Runs all the tests in the test harness.
+        '''
         self.test_roles()
         self.test_time_restriction()
 
     def test_roles(self):
+        '''
+        Tests the permissions for all the roles.
+        '''
         print("\n----------\nRunning " + self.test_roles.__name__ + "\n")
         expected_roles = {'Regular Client', 'Premium Client', 'NonTechEmployee', 'Financial Advisor', 'Financial Planner', 'Investment Analyst', 'Technical Support', 'Teller', 'Compliance Officer'}
         assert set(self.ac.policy.keys()) == expected_roles, "The roles did not match"
@@ -44,6 +56,9 @@ class TestAccessController():
         print("\nPASSED")
 
     def test_time_restriction(self):
+        '''
+        Tests whether the time restriction is properly applied.
+        '''
         print("\n----------\nRunning " + self.test_time_restriction.__name__ + "\n")
         
         # Set the clock to 11am
