@@ -79,7 +79,7 @@ class TestUserInterface():
         assert self.ui.validate_password(username, "Bardia123!") == False, "Error: username test case test failed."
 
         # Testing a valid password.
-        assert self.ui.validate_password(username, "Abard23456!") == True, "Error: valid password test case test failed."
+        assert self.ui.validate_password(username, "Abard1234!") == True, "Error: valid password test case test failed."
 
         print("PASS")   
 
