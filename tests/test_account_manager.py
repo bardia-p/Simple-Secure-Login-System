@@ -35,8 +35,9 @@ class TestAccountManager():
         username = "bardia"
         password = "password"
         role = "Regular User"
+        test_email = "test@gmail.com"
 
-        res = self.am.enrol_user(username, password, role)
+        res = self.am.enrol_user(username, password, role, test_email)
         
         assert res == True, "The user was not enrolled properly."
         assert self.am.username_exists(username) == True, "The user was not recorded properly."
@@ -53,12 +54,14 @@ class TestAccountManager():
         username = "cassidy"
         password = "password123"
         role = "Regular User"
+        test_email = "test@gmail.com"
 
-        res = self.am.enrol_user(username, password, role)
+
+        res = self.am.enrol_user(username, password, role, test_email)
         
         assert res == True, "The user was not enrolled properly."
         assert self.am.username_exists(username) == True, "The username was not recorded properly."
-        assert self.am.enrol_user(username, password, role) == False, "The same user was recorded twice."
+        assert self.am.enrol_user(username, password, role, test_email) == False, "The same user was recorded twice."
 
         print("PASS")
 
@@ -71,8 +74,9 @@ class TestAccountManager():
         username = "doro"
         password = "abcd"
         role = "Regular User"
+        test_email = "test@gmail.com"
 
-        res = self.am.enrol_user(username, password, role)
+        res = self.am.enrol_user(username, password, role, test_email)
         
         assert res == True, "The user was not enrolled properly."
         assert self.am.username_exists(username) == True, "The user was not recorded properly."

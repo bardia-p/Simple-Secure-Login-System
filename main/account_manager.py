@@ -35,7 +35,7 @@ class AccountManager:
                 return True
         return False
     
-    def enrol_user(self, username, password, role):
+    def enrol_user(self, username, password, role, email):
         '''
         Enrols a new user in the system.
 
@@ -46,7 +46,7 @@ class AccountManager:
         if not self.username_exists(username):
             password_file = open(self.password_filename, "a")
             encrypted_pasword = self.pm.generate_password_hash(password)
-            password_line = username + ":" + encrypted_pasword + ":" + role + "\n"
+            password_line = username + ":" + encrypted_pasword + ":" + role + ":" + email + "\n"
             password_file.write(password_line)
             password_file.close()
             return True

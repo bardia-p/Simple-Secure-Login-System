@@ -78,6 +78,38 @@ class UserInterface:
         '''
         return self.ac.has_role(role)
     
+    def display_perms(self, permissions):
+        '''
+        Displays the permissions
+
+        @param permissions: the dictionary of all the user permissions.
+        '''
+        perms = []
+        for p in permissions.keys():
+            perms.append(permissions[p] + ":" + p)
+        print("\t\t".join(perms))
+
+    def take_commands(self, username, role, permissions):
+        '''
+        Takes in a command and verifies it against the permissions.
+
+        @param username: The username for the user.
+        @param role: The user role.
+        @param permissions: The permissions for the user.
+        '''
+        command = input("\nEnter a command: Enter x to exit: ")
+
+        while (command != "x"):
+            if command not in permissions:
+                print("INVALID COMMAND")
+            elif command == "Request Client Account" and permissions[command] == "Execute":
+                print("Client Access Granted")
+                new_permissions = self.ac.get_permissions("Regular Client")
+                for p in new_permissions.keys():
+                    permissions[p] = new_permissions[p]
+
+            self.display_perms(permissions)
+            command = input("\nEnter a command: Enter x to exit: ")
 
     def load_user(self, username, role):
         '''
@@ -92,11 +124,8 @@ class UserInterface:
         if len(permissions) == 0:
             print("You are not allowed to use the system at this time!")
         else:
-            res = ""
-            for p in permissions.keys():
-                res += permissions[p] + ":" + p +",\t"
-
-            print(res)
+            self.display_perms(permissions)
+            self.take_commands(username, role, permissions)
 
     def load_login(self):
         '''
@@ -129,7 +158,9 @@ class UserInterface:
             print("Error! Invalid role")
             role = input("Role: ")
 
-        if self.am.enrol_user(username, password, role):
+        email = input("Email Address: ")
+
+        if self.am.enrol_user(username, password, role, email):
             print("User enrolled successfully!")
             self.start()
         else:

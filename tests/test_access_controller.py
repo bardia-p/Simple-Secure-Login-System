@@ -31,9 +31,9 @@ class TestAccessController():
         for r in self.ac.policy.keys():
             print("Testing " + r)
             if r == "Regular Client":
-                expected_permissions = {'Account Balance': 'View', 'Investment Portfolio': 'View', 'Financial Advisor Contacts': 'View'}
+                expected_permissions = {'Client Information': 'View/Modify', 'Account Balance': 'View', 'Investment Portfolio': 'View', 'Financial Advisor Contacts': 'View'}
             elif r == "Premium Client":
-                expected_permissions = {'Account Balance': 'View', 'Investment Portfolio': 'View/Modify', 'Financial Advisor Contacts': 'View', 'Financial Planner Contacts': 'View', 'Investment Analyst Contacts': 'View'}
+                expected_permissions = {'Client Information': 'View/Modify', 'Account Balance': 'View', 'Investment Portfolio': 'View/Modify', 'Financial Advisor Contacts': 'View', 'Financial Planner Contacts': 'View', 'Investment Analyst Contacts': 'View'}
             elif r == "NonTechEmployee":
                 expected_permissions = {'Account Balance': 'View', 'Investment Portfolio': 'View'}
             elif r == "Financial Advisor":
@@ -43,11 +43,11 @@ class TestAccessController():
             elif r == "Investment Analyst":
                 expected_permissions = {'Account Balance': 'View', 'Investment Portfolio': 'View/Modify', 'Private Consumer Instruments': 'View', 'Money Market Instruments': 'View', 'Derivatives Trading': 'View', 'Interest Instruments': 'View'}
             elif r == "Technical Support":
-                expected_permissions = {'Client Information': 'View', 'Client Account': 'Validate'}
+                expected_permissions = {'Client Information': 'View', 'Request Client Account': 'Execute'}
             elif r == "Teller":
                 expected_permissions = {'Account Balance': 'View', 'Investment Portfolio': 'View'}
             elif r == "Compliance Officer":
-                expected_permissions = {'Account Balance': 'View', 'Investment Portfolio': 'View', 'Investment Portfolio': 'View/Validate'}
+                expected_permissions = {'Account Balance': 'View', 'Investment Portfolio': 'View', 'Validate Investment Portfolio': 'Execute'}
             else:
                 expected_permissions = {}
 

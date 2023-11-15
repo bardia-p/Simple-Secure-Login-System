@@ -3,6 +3,7 @@
         {
             "name" : "Regular Client",
             "permissions" : {
+                "Client Information" : "View/Modify",
                 "Account Balance" : "View",
                 "Investment Portfolio" : "View",
                 "Financial Advisor Contacts" : "View"
@@ -56,7 +57,7 @@
             "name" : "Technical Support",
             "permissions" : {
                 "Client Information" : "View",
-                "Client Account" : "Validate"
+                "Request Client Account" : "Execute"
             }
         },
         {
@@ -68,7 +69,7 @@
             "name" : "Compliance Officer",
             "parent" : "NonTechEmployee",
             "permissions" : {
-                "Investment Portfolio" : "Validate"
+                "Validate Investment Portfolio" : "Execute"
             }
         }
     ]
