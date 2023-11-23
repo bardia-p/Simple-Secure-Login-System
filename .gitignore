@@ -1,3 +1,4 @@
 .vscode/
 .DS_STORE
 test_passwd.txt
+main/__pycache__
