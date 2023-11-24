@@ -22,7 +22,7 @@ class TestPasswordManager():
 
         salt = "2e30bc257707421d9880d2eac4ffd75e"
         password = "password"
-        expected_hash = "2e30bc257707421d9880d2eac4ffd75eb5418169de7cbe67fc477b545b1c5cabc12a423d2c5d9d4fa341df72af9a3429"
+        expected_hash = "2e30bc257707421d9880d2eac4ffd75e2061fcdf8505b90119af4503d73eee0e61323e7d569720d58aedb9f0de05a055"
 
         assert self.pm.generate_salted_password_hash(password, salt) == expected_hash, "The produced hash was incorrect."
 

@@ -2,18 +2,20 @@ import hashlib
 import uuid
 
 SALT_SIZE = 32
+NUM_ITERATIONS = 100000
 
 class PasswordManager:
     '''
     The class in charge of encrypting and verifying the passwords.
     '''
-    def __init__(self, salt_size = SALT_SIZE):
+    def __init__(self, salt_size = SALT_SIZE, num_itrations = NUM_ITERATIONS):
         '''
         The constructor for the password manager class.
 
         @param salt_size: The required salt size for the passwords (cannot be more than 32 characters)
         '''
         self.salt_size = salt_size
+        self.num_iterations = num_itrations
 
     def generate_salted_password_hash(self, password, salt):
         '''
@@ -23,7 +25,7 @@ class PasswordManager:
         @param salt: The salt to add to the password.
         '''
         # Returns the salt along side the encrypted version of the password and the salt.
-        return salt + hashlib.sha256(salt.encode() + password.encode()).hexdigest()
+        return salt + hashlib.pbkdf2_hmac('sha256', password.encode(), salt.encode(), self.num_iterations).hex()
     
     def generate_password_hash(self, password):
         '''
