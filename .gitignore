@@ -2,3 +2,4 @@
 .DS_STORE
 test_passwd.txt
 main/__pycache__
+tests/__pycache__

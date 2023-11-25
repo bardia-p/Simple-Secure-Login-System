@@ -153,9 +153,11 @@ class UserInterface:
             print("Error! Invalid password")
             password = getpass.getpass()
 
+        print("Select from one of the available roles:\n" + "\t".join(self.ac.policy))
         role = input("Role: ")
         while (not self.validate_role(role)):
             print("Error! Invalid role")
+            print("Select from one of the available roles:\n" + "\t".join(self.ac.policy))
             role = input("Role: ")
 
         email = input("Email Address: ")
