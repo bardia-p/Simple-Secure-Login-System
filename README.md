@@ -1,7 +1,7 @@
 # Simple Secure Login System
-This application simulates a simple login system for Vinfest Holdings that allows users to register and login based on their various roles. The users are given different permissions based on their role. 
+This application simulates a simple login system for Finvest Holdings that allows users to register and login based on their various roles. The users are given different permissions based on their roles. 
 
-To help secure the login process, the user's credentials are secured and hashed with a 32 byte salt. In addition, the system enforces various password rules that were specified by the company. 
+To help secure the login process, the user's credentials are secured and hashed with a 32-byte salt. In addition, the system enforces various password rules that were specified by the company. 
 
 The detailed policy for the system can be found in the policy.json file.
 
@@ -31,7 +31,7 @@ Enter a command: Enter x to exit:
 ```
 
 # Launching the tests
-Extensive testing was conducted to ensure the system is working as expected. To launch the tests simply use the runtests script:
+Extensive testing was conducted to ensure the system was working as expected. To launch the tests simply use the runtests script:
 
 ```
 $ ./runtests.sh 
